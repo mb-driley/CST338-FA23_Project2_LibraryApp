@@ -6,16 +6,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private EditText mUsernameField, mPasswordField;
     private Button mButton;
     private String mUsername, mPassword;
+    List<User> mUserList = new ArrayList<>();
+    User mDefaultTestUser = new User("testuser1", "testuser1", false);
+    User mDefaultAdminUser = new User("admin2", "admin2", true);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mUserList.add(mDefaultTestUser);
+        mUserList.add(mDefaultAdminUser);
+        wireUpDisplay();
     }
 
     private void wireUpDisplay() {
@@ -27,6 +37,29 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getValuesFromDisplay();
+
+                for (int i = 0; i < mUserList.size(); i++)
+                {
+                    if (mUsername.equals(mUserList.get(i).getUsername())) {
+                        if (mPassword.equals(mUserList.get(i).getPassword())) {
+                            if (mUserList.get(i).isAdmin()) {
+                                Toast.makeText(MainActivity.this, "Correct Password & is Admin", Toast.LENGTH_SHORT).show();
+                            }
+
+                            else if (!mUserList.get(i).isAdmin()) {
+                                Toast.makeText(MainActivity.this, "Correct password, but not admin", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        else {
+                            Toast.makeText(MainActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    else {
+                        Toast.makeText(MainActivity.this, "No user: " + mUsername + " found", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
     }
