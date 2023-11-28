@@ -2,6 +2,7 @@ package com.example.cst338fa23_project2_libraryapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -44,10 +45,14 @@ public class MainActivity extends AppCompatActivity {
                         if (mPassword.equals(mUserList.get(i).getPassword())) {
                             if (mUserList.get(i).isAdmin()) {
                                 Toast.makeText(MainActivity.this, "Correct Password & is Admin", Toast.LENGTH_SHORT).show();
+                                Intent intent = LandingPage.intentFactory(getApplicationContext(), mUserList.get(i));
+                                startActivity(intent);
                             }
 
                             else if (!mUserList.get(i).isAdmin()) {
                                 Toast.makeText(MainActivity.this, "Correct password, but not admin", Toast.LENGTH_SHORT).show();
+                                Intent intent = LandingPage.intentFactory(getApplicationContext(), mUserList.get(i));
+                                startActivity(intent);
                             }
                         }
 
