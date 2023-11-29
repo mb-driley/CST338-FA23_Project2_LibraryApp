@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,6 +29,38 @@ public class LandingPage extends AppCompatActivity {
             mDeleteUserButton.setVisibility(View.INVISIBLE);
             mCheckUserRentingBookButton.setVisibility(View.INVISIBLE);
         }
+
+        // Sets an On Click Listener for the Add User Button for Admins
+        mAddUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(LandingPage.this, "Feature not yet implemented", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Sets an On Click Listener for the Delete User Button for Admins
+        mDeleteUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(LandingPage.this, "Feature not yet implemented", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Sets an On Click Listener for the Check User Renting Book Button for Admins
+        mCheckUserRentingBookButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(LandingPage.this, "Feature not yet implemented", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Sets an On Click Listener for the View Books Button for Normal Users
+        mViewBooksButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(LandingPage.this, "Feature not yet implemented", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public static Intent intentFactory(Context packageContext, User user) {
