@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
     private Button mButton;
     private String mUsername, mPassword;
     List<User> mUserList = new ArrayList<>();
-    User mDefaultTestUser = new User("testuser1", "testuser1", false);
-    User mDefaultAdminUser = new User("admin2", "admin2", true);
+    User mDefaultAdminUser = new User(1, "admin", "admin", true);
+    User mDefaultTestUser = new User(2, "tester", "tester", false);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -3,13 +3,26 @@ package com.example.cst338fa23_project2_libraryapp;
 
 
 public class User {
-    private String mUsername, mPassword;
+    private int mUserId;
+    private String mUsername;
+    private String mPassword;
+    private boolean mCurrentlyRenting;
     private boolean mAdmin;
 
-    public User(String username, String password, boolean admin) {
+    public User(int userId, String username, String password, boolean admin) {
+        mUserId = userId;
         mUsername = username;
         mPassword = password;
+        mCurrentlyRenting = false;
         mAdmin = admin;
+    }
+
+    public int getUserId() {
+        return mUserId;
+    }
+
+    public void setUserId(int userId) {
+        mUserId = userId;
     }
 
     public String getUsername() {
@@ -28,6 +41,14 @@ public class User {
         mPassword = password;
     }
 
+    public boolean isCurrentlyRenting() {
+        return mCurrentlyRenting;
+    }
+
+    public void setCurrentlyRenting(boolean currentlyRenting) {
+        mCurrentlyRenting = currentlyRenting;
+    }
+
     public boolean isAdmin() {
         return mAdmin;
     }
@@ -39,8 +60,10 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "Username='" + mUsername + '\'' +
+                "UserId=" + mUserId +
+                ", Username='" + mUsername + '\'' +
                 ", Password='" + mPassword + '\'' +
+                ", CurrentlyRenting=" + mCurrentlyRenting +
                 ", Admin=" + mAdmin +
                 '}';
     }
