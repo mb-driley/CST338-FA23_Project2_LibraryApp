@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LandingPage extends AppCompatActivity {
     private Button mAddUserButton, mDeleteUserButton, mCheckUserRentingBookButton, mViewBooksButton;
     public static User mPassedInUser;
+    private TextView mAdminOnlyText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,12 +24,14 @@ public class LandingPage extends AppCompatActivity {
             mAddUserButton.setVisibility(View.VISIBLE);
             mDeleteUserButton.setVisibility(View.VISIBLE);
             mCheckUserRentingBookButton.setVisibility(View.VISIBLE);
+            mAdminOnlyText.setVisibility(View.VISIBLE);
         }
 
         else if (!mPassedInUser.isAdmin()) {
             mAddUserButton.setVisibility(View.INVISIBLE);
             mDeleteUserButton.setVisibility(View.INVISIBLE);
             mCheckUserRentingBookButton.setVisibility(View.INVISIBLE);
+            mAdminOnlyText.setVisibility(View.INVISIBLE);
         }
 
         // Sets an On Click Listener for the Add User Button for Admins
@@ -74,6 +78,7 @@ public class LandingPage extends AppCompatActivity {
         mDeleteUserButton = findViewById(R.id.buttonDeleteUser);
         mCheckUserRentingBookButton = findViewById(R.id.buttonCheckUserRentingBook);
         mViewBooksButton = findViewById(R.id.buttonViewBooks);
+        mAdminOnlyText = findViewById(R.id.landingPageAdminOnlyTextView);
     }
 
 }
