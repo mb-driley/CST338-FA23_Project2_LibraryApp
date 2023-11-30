@@ -2,6 +2,7 @@ package com.example.cst338fa23_project2_libraryapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -73,5 +74,10 @@ public class MainActivity extends AppCompatActivity {
     private void getValuesFromDisplay() {
         mUsername = mUsernameField.getText().toString();
         mPassword = mPasswordField.getText().toString();
+    }
+
+    public static Intent intentFactory(Context packageContext) {
+        Intent intent = new Intent(packageContext, MainActivity.class);
+        return intent;
     }
 }
