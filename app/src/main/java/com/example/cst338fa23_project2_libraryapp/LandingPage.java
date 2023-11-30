@@ -1,6 +1,7 @@
 package com.example.cst338fa23_project2_libraryapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LandingPage extends AppCompatActivity {
@@ -34,11 +36,30 @@ public class LandingPage extends AppCompatActivity {
             mAdminOnlyText.setVisibility(View.INVISIBLE);
         }
 
+        // Sets an On Click Listener for the Log Out Button
         mLogOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = MainActivity.intentFactory(getApplicationContext());
-                startActivity(intent);
+                AlertDialog.Builder mLogOutAlert = new AlertDialog.Builder(LandingPage.this);
+                mLogOutAlert.setTitle("Log Out");
+                mLogOutAlert.setMessage("Would you like to log out of this account?");
+                mLogOutAlert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = MainActivity.intentFactory(getApplicationContext());
+                        startActivity(intent);
+                        Toast.makeText(LandingPage.this, "Logging out...", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                mLogOutAlert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(LandingPage.this, "Returning to main page...", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                mLogOutAlert.show();
             }
         });
 
