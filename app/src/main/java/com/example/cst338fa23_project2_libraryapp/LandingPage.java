@@ -3,24 +3,37 @@ package com.example.cst338fa23_project2_libraryapp;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 public class LandingPage extends AppCompatActivity {
     private Button mAddUserButton, mDeleteUserButton, mCheckUserRentingBookButton, mViewBooksButton, mLogOutButton;
     public static User mPassedInUser;
     private TextView mAdminOnlyText;
+    private Switch mModeSwitch;
+    private boolean mNightMode;
+    SharedPreferences mSharedPreferences;
+    SharedPreferences.Editor mEditor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.landing_page);
         wireUpDisplay();
+        mSharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE);
+        mNightMode = mSharedPreferences.getBoolean("night", false);
+
+        if (mNightMode) {
+            mModeSwitch.setChecked(true);
+        }
 
         if (mPassedInUser.isAdmin()) {
             mAddUserButton.setVisibility(View.VISIBLE);
@@ -60,6 +73,25 @@ public class LandingPage extends AppCompatActivity {
                 });
 
                 mLogOutAlert.show();
+            }
+        });
+
+        mModeSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mNightMode) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    mEditor = mSharedPreferences.edit();
+                    mEditor.putBoolean("night", false);
+                }
+
+                else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    mEditor = mSharedPreferences.edit();
+                    mEditor.putBoolean("night", true);
+                }
+
+                mEditor.apply();
             }
         });
 
@@ -109,6 +141,7 @@ public class LandingPage extends AppCompatActivity {
         mViewBooksButton = findViewById(R.id.buttonViewBooks);
         mLogOutButton = findViewById(R.id.landingPageLogOutButton);
         mAdminOnlyText = findViewById(R.id.landingPageAdminOnlyTextView);
+        mModeSwitch = findViewById(R.id.landingPageModeSwitch);
     }
 
 }
