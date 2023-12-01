@@ -58,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         else {
-                            Toast.makeText(MainActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
+                            mPasswordField.setError("Invalid Password"); // Puts an indicator on the field showing that the field is incorrect
+                            //Toast.makeText(MainActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
                         }
                     }
 
