@@ -15,9 +15,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private EditText mUsernameField, mPasswordField;
-    private Button mButton;
+    private Button mLoginButton;
     private String mUsername, mPassword;
     List<User> mUserList = new ArrayList<>();
+    User mUser;
     User mDefaultAdminUser = new User(1, "admin", "admin", true);
     User mDefaultTestUser = new User(2, "tester", "tester", false);
 
@@ -33,36 +34,22 @@ public class MainActivity extends AppCompatActivity {
     private void wireUpDisplay() {
         mUsernameField = findViewById(R.id.editTextLoginUserName);
         mPasswordField = findViewById(R.id.editTextLoginPassword);
-        mButton = findViewById(R.id.buttonLogin);
+        mLoginButton = findViewById(R.id.buttonLogin);
 
-        mButton.setOnClickListener(new View.OnClickListener() {
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getValuesFromDisplay();
-
-                for (int i = 0; i < mUserList.size(); i++) {
-                    if (mUsername.equals(mUserList.get(i).getUsername())) {
-                        if (mPassword.equals(mUserList.get(i).getPassword())) {
-                            if (mUserList.get(i).isAdmin()) {
-                                Toast.makeText(MainActivity.this, "Correct Password & is Admin", Toast.LENGTH_SHORT).show();
-                                Intent intent = LandingPage.intentFactory(getApplicationContext(), mUserList.get(i));
-                                startActivity(intent);
-                            }
-
-                            else if (!mUserList.get(i).isAdmin()) {
-                                Toast.makeText(MainActivity.this, "Correct password, but not admin", Toast.LENGTH_SHORT).show();
-                                Intent intent = LandingPage.intentFactory(getApplicationContext(), mUserList.get(i));
-                                startActivity(intent);
-                            }
-                        }
-
-                        else {
-                            Toast.makeText(MainActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
-                        }
+                mUser = checkForUserInList();
+                if (mUser != null) {
+                    if (validatePassword()) {
+                        Intent intent = LandingPage.intentFactory(getApplicationContext(), mUser);
+                        startActivity(intent);
                     }
 
                     else {
-                        Toast.makeText(MainActivity.this, "No user: " + mUsername + " found", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Invalid password. " +
+                                        "Please try again", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -78,5 +65,30 @@ public class MainActivity extends AppCompatActivity {
     public static Intent intentFactory(Context packageContext) {
         Intent intent = new Intent(packageContext, MainActivity.class);
         return intent;
+    }
+
+    public User checkForUserInList() {
+        User mUser = null;
+        for (User user: mUserList) {
+            if (mUsername.equals(user.getUsername())) {
+                mUser = user;
+            }
+        }
+
+        if (mUser == null) {
+            Toast.makeText(MainActivity.this, "No user: " + mUsername + " found",
+                    Toast.LENGTH_SHORT).show();
+            return null;
+        }
+
+        return mUser;
+    }
+
+    public boolean validatePassword() {
+        return mUser.getPassword().equals(mPassword);
+    }
+
+    public void addUserToList(User user) {
+        mUserList.add(user);
     }
 }
