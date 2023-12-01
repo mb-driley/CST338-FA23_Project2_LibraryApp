@@ -7,4 +7,5 @@
     <string name="admin_only_add_a_user">Admin Only: Add a User</string>
     <string name="view_books">View Books</string>
     <string name="admin_only_check_users_renting_books">Admin Only: Check Users Renting Books</string>
+    <string name="welcome_insert_user_name_here">Welcome</string>
 </resources>

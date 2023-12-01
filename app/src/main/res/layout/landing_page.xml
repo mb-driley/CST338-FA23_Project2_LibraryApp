@@ -18,22 +18,10 @@
         app:layout_constraintVertical_bias="0.499" />
 
     <Button
-        android:id="@+id/buttonAddUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="532dp"
-        android:text="@string/admin_only_add_a_user"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
-
-    <Button
         android:id="@+id/buttonDeleteUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="36dp"
         android:text="@string/admin_only_delete_a_user_s_account"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +34,7 @@
         android:id="@+id/buttonCheckUserRentingBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="40dp"
         android:text="@string/admin_only_check_users_renting_books"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,30 +43,43 @@
         tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/landingPageWelcomeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
-        android:text="Welcome [INSERT USER NAME HERE]"
-        android:textSize="22sp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.372"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/landingPageAdminOnlyTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Admin Only!!"
-        android:textSize="20sp"
+        android:layout_marginBottom="8dp"
+        android:text="These Features are exclusive to Admin Users"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonAddUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonViewBooks"
-        app:layout_constraintVertical_bias="0.698"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.938"
         tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/buttonAddUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="312dp"
+        android:text="@string/admin_only_add_a_user"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/landingPageWelcomeTextView"
+        android:layout_width="140dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="144dp"
+        android:text="@string/welcome_insert_user_name_here"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/landingPageLogOutButton"

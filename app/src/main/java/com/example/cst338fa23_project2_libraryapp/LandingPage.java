@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 public class LandingPage extends AppCompatActivity {
     private Button mAddUserButton, mDeleteUserButton, mCheckUserRentingBookButton, mViewBooksButton, mLogOutButton;
     public static User mPassedInUser;
-    private TextView mAdminOnlyText;
+    private TextView mAdminOnlyText, mWelcomeTextView;
     private Switch mModeSwitch;
     private boolean mNightMode;
     SharedPreferences mSharedPreferences;
@@ -30,12 +30,14 @@ public class LandingPage extends AppCompatActivity {
         wireUpDisplay();
         mSharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE);
         mNightMode = mSharedPreferences.getBoolean("night", false);
+        mWelcomeTextView.setText("Welcome " + mPassedInUser.getUsername());
 
         if (mNightMode) {
             mModeSwitch.setChecked(true);
         }
 
         if (mPassedInUser.isAdmin()) {
+            mViewBooksButton.setVisibility(View.INVISIBLE);
             mAddUserButton.setVisibility(View.VISIBLE);
             mDeleteUserButton.setVisibility(View.VISIBLE);
             mCheckUserRentingBookButton.setVisibility(View.VISIBLE);
@@ -147,6 +149,7 @@ public class LandingPage extends AppCompatActivity {
         mViewBooksButton = findViewById(R.id.buttonViewBooks);
         mLogOutButton = findViewById(R.id.landingPageLogOutButton);
         mAdminOnlyText = findViewById(R.id.landingPageAdminOnlyTextView);
+        mWelcomeTextView = findViewById(R.id.landingPageWelcomeTextView);
         mModeSwitch = findViewById(R.id.landingPageModeSwitch);
     }
 
