@@ -40,8 +40,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 getValuesFromDisplay();
 
-                for (int i = 0; i < mUserList.size(); i++)
-                {
+                for (int i = 0; i < mUserList.size(); i++) {
                     if (mUsername.equals(mUserList.get(i).getUsername())) {
                         if (mPassword.equals(mUserList.get(i).getPassword())) {
                             if (mUserList.get(i).isAdmin()) {

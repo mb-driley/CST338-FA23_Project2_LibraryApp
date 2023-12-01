@@ -61,6 +61,7 @@
         android:layout_marginTop="148dp"
         android:text="Welcome [INSERT USER NAME HERE]"
         android:textSize="22sp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.372"
         app:layout_constraintStart_toStartOf="parent"
