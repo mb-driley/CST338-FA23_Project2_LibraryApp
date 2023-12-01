@@ -99,7 +99,8 @@ public class LandingPage extends AppCompatActivity {
         mAddUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(LandingPage.this, "Feature not yet implemented", Toast.LENGTH_SHORT).show();
+                Intent intent = AddUserActivity.intentFactory(getApplicationContext());
+                startActivity(intent);
             }
         });
 
@@ -126,6 +127,11 @@ public class LandingPage extends AppCompatActivity {
                 Toast.makeText(LandingPage.this, "Feature not yet implemented", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public static Intent intentFactory(Context packageContext) {
+        Intent intent = new Intent(packageContext, LandingPage.class);
+        return intent;
     }
 
     public static Intent intentFactory(Context packageContext, User user) {
