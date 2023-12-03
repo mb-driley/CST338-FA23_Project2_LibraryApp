@@ -44,26 +44,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/deleteUserUsernameEditText"
+        android:id="@+id/deleteUserEditText"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="340dp"
         android:ems="10"
         android:hint="@string/username"
-        android:inputType="text"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/deleteUserPasswordEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="340dp"
-        android:ems="10"
-        android:hint="@string/password"
         android:inputType="text"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +66,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deleteUserUsernameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/deleteUserEditText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

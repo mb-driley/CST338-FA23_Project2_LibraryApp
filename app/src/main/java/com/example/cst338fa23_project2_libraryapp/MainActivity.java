@@ -101,7 +101,26 @@ public class MainActivity extends AppCompatActivity {
         return mUser.getPassword().equals(mPassword);
     }
 
-    public void addUserToList(User user) {
-        mUserList.add(user);
+    public boolean validatePassword(String username, String password) {
+        boolean mCorrectPassword = false;
+        for (User user: mUserList) {
+            if (username.equals(user.getUsername())) {
+                if (user.getPassword().equals(password)) {
+                    mCorrectPassword = true;
+                }
+            }
+        }
+
+        return mCorrectPassword;
+    }
+
+    public void addUserToList(User user) {mUserList.add(user);}
+
+    public void deleteUserFromList(String password) {
+        for (User user: mUserList) {
+            if (password.equals(user.getPassword())) {
+                mUserList.remove(user);
+            }
+        }
     }
 }
