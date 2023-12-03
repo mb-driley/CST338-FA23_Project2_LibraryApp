@@ -84,17 +84,15 @@ public class MainActivity extends AppCompatActivity {
         return mUser;
     }
 
-    public User checkForUserInList(String username) {
-        User mUser = null;
-
+    public boolean checkForUserInList(String username) {
+        boolean mAlreadyUsed = false;
         for (User user: mUserList) {
             if (username.equals(user.getUsername())) {
-                mUser = user;
-                return mUser;
+                mAlreadyUsed = true;
             }
         }
 
-        return mUser;
+        return mAlreadyUsed;
     }
 
     public int getUserListSize() {return mUserList.size();}

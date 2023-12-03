@@ -29,27 +29,29 @@ public class AddUserActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
         wireUpDisplay();
-        getValuesFromDisplay();
 
         mReturnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder mReturnToMainAlert = new AlertDialog.Builder(AddUserActivity.this);
                 mReturnToMainAlert.setTitle("Return to Main Page");
-                mReturnToMainAlert.setMessage("Would you like to cancel creating an account, and return to the main page?");
+                mReturnToMainAlert.setMessage("Would you like to cancel creating an account, " +
+                        "and return to the main page?");
                 mReturnToMainAlert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = LandingPage.intentFactory(getApplicationContext());
                         startActivity(intent);
-                        Toast.makeText(AddUserActivity.this, "Returning to the main page...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddUserActivity.this,
+                                "Returning to the main page...", Toast.LENGTH_SHORT).show();
                     }
                 });
 
                 mReturnToMainAlert.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(AddUserActivity.this, "Continuing to create account...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddUserActivity.this,
+                                "Continuing to create account...", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -60,40 +62,70 @@ public class AddUserActivity extends MainActivity {
         mCreateAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mUser = AddUserActivity.super.checkForUserInList(mUsername);
-
-                if (mUser != null) {
-                    mPasswordField.setError("Username Already Exists. Please try another username");
-                }
-
-                else if (mUser == null) {
                     AlertDialog.Builder mAccountPrivileges = new AlertDialog.Builder(AddUserActivity.this);
                     mAccountPrivileges.setTitle("Normal or Admin");
                     mAccountPrivileges.setMessage("Which type of account will this be?");
                     mAccountPrivileges.setPositiveButton("Admin", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            mUser = new User(AddUserActivity.super.getUserListSize() + 1, mUsername, mPassword, true);
-                            AddUserActivity.super.addUserToList(mUser);
-                            Toast.makeText(AddUserActivity.this, "Admin Account Successfully Created", Toast.LENGTH_SHORT).show();
-                            Intent intent = LandingPage.intentFactory(getApplicationContext());
-                            startActivity(intent);
+                            getValuesFromDisplay();
+                            if (AddUserActivity.super.checkForUserInList(mUsername)) {
+                                mUsernameField.setError("Username Already Exists. " +
+                                        "Please try another username");
+                            }
+
+                            else if (mUsername.length() > 10) {
+                                mUsernameField.setError("Username is " + mUsername.length() +
+                                        ". Please try again with a username under 10 characters");
+                            }
+
+                            else if (mPassword.length() > 10) {
+                                mPasswordField.setError("Username is " + mPassword.length() +
+                                        ". Please try again with a username under 10 characters");
+                            }
+
+                            else if (!AddUserActivity.super.checkForUserInList(mUsername)) {
+                                mUser = new User(AddUserActivity.super.getUserListSize() + 1, mUsername, mPassword, true);
+                                AddUserActivity.super.addUserToList(mUser);
+                                Toast.makeText(AddUserActivity.this, "Admin Account " +
+                                        "Successfully Created", Toast.LENGTH_SHORT).show();
+                                Intent intent = LandingPage.intentFactory(getApplicationContext());
+                                startActivity(intent);
+                            }
                         }
                     });
 
                     mAccountPrivileges.setNegativeButton("Normal", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            mUser = new User(AddUserActivity.super.getUserListSize() + 1, mUsername, mPassword, false);
-                            AddUserActivity.super.addUserToList(mUser);
-                            Toast.makeText(AddUserActivity.this, "Normal Account Successfully Created", Toast.LENGTH_SHORT).show();
-                            Intent intent = LandingPage.intentFactory(getApplicationContext());
-                            startActivity(intent);
+                            getValuesFromDisplay();
+                            if (AddUserActivity.super.checkForUserInList(mUsername)) {
+                                mUsernameField.setError("Username Already Exists. " +
+                                        "Please try another username");
+                            }
+
+                            else if (mUsername.length() > 10) {
+                                mUsernameField.setError("Username is " + mUsername.length() +
+                                        ". Please try again with a username under 10 characters");
+                            }
+
+                            else if (mPassword.length() > 10) {
+                                mPasswordField.setError("Username is " + mPassword.length() +
+                                        ". Please try again with a username under 10 characters");
+                            }
+
+                            else if (!AddUserActivity.super.checkForUserInList(mUsername)) {
+                                mUser = new User(AddUserActivity.super.getUserListSize() + 1, mUsername, mPassword, false);
+                                AddUserActivity.super.addUserToList(mUser);
+                                Toast.makeText(AddUserActivity.this, "Normal Account " +
+                                        "Successfully Created", Toast.LENGTH_SHORT).show();
+                                Intent intent = LandingPage.intentFactory(getApplicationContext());
+                                startActivity(intent);
+                            }
                         }
                     });
 
                     mAccountPrivileges.show();
-                }
                 }
             });
     }
