@@ -1,7 +1,6 @@
 package com.example.cst338fa23_project2_libraryapp;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,17 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-
 public class AddUserActivity extends MainActivity {
 
     private Button mReturnButton, mCreateAccountButton;
     private EditText mUsernameField, mPasswordField;
     private User mUser;
     private String mUsername, mPassword;
-    List<Method> mMethodList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
