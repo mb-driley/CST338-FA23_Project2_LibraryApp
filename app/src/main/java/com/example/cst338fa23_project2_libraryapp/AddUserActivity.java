@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.cst338fa23_project2_libraryapp.DB.User;
+
 public class AddUserActivity extends MainActivity {
 
     private Button mReturnButton, mCreateAccountButton;
