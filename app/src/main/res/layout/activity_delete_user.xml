@@ -49,7 +49,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="340dp"
         android:ems="10"
-        android:hint="@string/username"
+        android:hint="Enter Information"
         android:inputType="text"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"

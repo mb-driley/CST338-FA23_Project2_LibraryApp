@@ -1,7 +1,6 @@
 package com.example.cst338fa23_project2_libraryapp;
 
 import androidx.appcompat.app.AlertDialog;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -99,13 +98,21 @@ public class AddUserActivity extends MainActivity {
                             }
 
                             else if (mUsername.length() > 10) {
-                                mUsernameField.setError("Username is " + mUsername.length() +
+                                mUsernameField.setError("Username length is " + mUsername.length() +
                                         ". Please try again with a username under 10 characters");
                             }
 
                             else if (mPassword.length() > 10) {
-                                mPasswordField.setError("Username is " + mPassword.length() +
+                                mPasswordField.setError("Password length is " + mPassword.length() +
                                         ". Please try again with a username under 10 characters");
+                            }
+
+                            else if (mUsername.isEmpty()) {
+                                mUsernameField.setError("Username field is empty");
+                            }
+
+                            else if (mPassword.isEmpty()) {
+                                mPasswordField.setError("Password field is empty");
                             }
 
                             else if (!AddUserActivity.super.checkForUserInList(mUsername)) {

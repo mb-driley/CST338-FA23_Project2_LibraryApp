@@ -1,8 +1,6 @@
 package com.example.cst338fa23_project2_libraryapp;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,6 +21,7 @@ public class DeleteUserActivity extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_user);
+        wireUpDisplay();
 
         mReturnButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +61,10 @@ public class DeleteUserActivity extends MainActivity {
                                     + " found", Toast.LENGTH_SHORT).show();
                 }
 
+                else if (mInputtedText.isEmpty()) {
+                    mInputTextField.setError("The field is empty");
+                }
+
                 else {
                     AlertDialog.Builder mContinueAlert = new AlertDialog.Builder(DeleteUserActivity.this);
                     mContinueAlert.setTitle("Continue onto deleting the account?");
@@ -71,7 +74,6 @@ public class DeleteUserActivity extends MainActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             mSavedUsername = mInputtedText;
                             mInstructionTextView.setText("Please Enter the Password of the Account");
-                            mInputTextField.setText("Password");
                             mContinueButton.setText("Delete!");
 
                             mContinueButton.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +82,10 @@ public class DeleteUserActivity extends MainActivity {
                                     getValuesFromDisplay();
                                     if (!DeleteUserActivity.super.validatePassword(mSavedUsername, mInputtedText)) {
                                         mInstructionTextView.setError("Invalid password. Please try again");
+                                    }
+
+                                    else if (mInputtedText.isEmpty()) {
+                                        mInputTextField.setError("The field is empty");
                                     }
 
                                     else {
