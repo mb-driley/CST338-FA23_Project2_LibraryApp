@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.cst338fa23_project2_libraryapp.DB.User;
+import com.example.myapplication.R;
 
 public class LandingPage extends AppCompatActivity {
     private Button mAddUserButton, mDeleteUserButton, mCheckUserRentingBookButton, mViewBooksButton, mLogOutButton;

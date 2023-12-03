@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.cst338fa23_project2_libraryapp.DB.User;
+import com.example.myapplication.R;
 
 public class AddUserActivity extends MainActivity {
 
