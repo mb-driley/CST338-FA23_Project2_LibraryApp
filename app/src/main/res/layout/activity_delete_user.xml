@@ -4,72 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddUserActivity">
-
-    <TextView
-        android:id="@+id/addUserTextView"
-        android:layout_width="235dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="124dp"
-        android:text="@string/creating_a_user"
-        android:textAlignment="center"
-        android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/addUserUsernameCriteriaTextView"
-        android:layout_width="260dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="184dp"
-        android:text="@string/username_and_password_cannot_exceed_more_than_10_characters"
-        android:textAlignment="center"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <EditText
-        android:id="@+id/addUserUsernameEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="268dp"
-        android:ems="10"
-        android:hint="@string/username"
-        android:inputType="text"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/addUserPasswordEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="@string/password"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addUserUsernameEditText" />
+    tools:context=".DeleteUserActivity">
 
     <Button
-        android:id="@+id/addUserCreateButton"
-        android:layout_width="210dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="60dp"
-        android:text="@string/create_account"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addUserPasswordEditText" />
-
-    <Button
-        android:id="@+id/addUserReturnButton"
+        android:id="@+id/deleteUserReturnButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -78,5 +16,71 @@
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/deleteUserTextView"
+        android:layout_width="235dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="136dp"
+        android:text="@string/deleting_a_user"
+        android:textSize="28sp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/deleteUserInstructionTextView"
+        android:layout_width="260dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="200dp"
+        android:text="Please Enter the Username of the Account You'd like to Delete"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/deleteUserUsernameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="340dp"
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/deleteUserPasswordEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="340dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addUserCreateButton"
+        android:layout_width="210dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="60dp"
+        android:text="Find User"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteUserUsernameEditText" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

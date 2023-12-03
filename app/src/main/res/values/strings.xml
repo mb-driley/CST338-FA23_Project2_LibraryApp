@@ -8,4 +8,9 @@
     <string name="view_books">View Books</string>
     <string name="admin_only_check_users_renting_books">Admin Only: Check Users Renting Books</string>
     <string name="welcome_insert_user_name_here">Welcome</string>
+    <string name="return_to_main_page">Return to Main Page</string>
+    <string name="create_account">Create Account</string>
+    <string name="username_and_password_cannot_exceed_more_than_10_characters">Username and Password cannot exceed more than 10 characters</string>
+    <string name="creating_a_user">Creating a User</string>
+    <string name="deleting_a_user">Deleting a User</string>
 </resources>
