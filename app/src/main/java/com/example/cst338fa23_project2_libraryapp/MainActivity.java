@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private String mUsername, mPassword;
     List<User> mUserList = new ArrayList<>();
     User mUser;
-    User mDefaultAdminUser = new User(1, "admin", "admin", true);
-    User mDefaultTestUser = new User(2, "tester", "tester", false);
+    User mDefaultAdminUser = new User(1, "testuser1", "testuser1", false);
+    User mDefaultTestUser = new User(2, "admin2", "admin2", true);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +83,21 @@ public class MainActivity extends AppCompatActivity {
 
         return mUser;
     }
+
+    public User checkForUserInList(String username) {
+        User mUser = null;
+
+        for (User user: mUserList) {
+            if (username.equals(user.getUsername())) {
+                mUser = user;
+                return mUser;
+            }
+        }
+
+        return mUser;
+    }
+
+    public int getUserListSize() {return mUserList.size();}
 
     public boolean validatePassword() {
         return mUser.getPassword().equals(mPassword);
