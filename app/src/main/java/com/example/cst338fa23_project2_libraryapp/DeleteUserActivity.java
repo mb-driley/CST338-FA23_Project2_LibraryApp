@@ -17,23 +17,25 @@ import com.example.cst338fa23_project2_libraryapp.DB.User;
 import com.example.myapplication.R;
 
 public class DeleteUserActivity extends MainActivity {
-    private EditText mInputTextField;
-    private String mSavedUsername, mInputtedText;
-    private Button mReturnButton, mContinueButton;
-    private TextView mInstructionTextView;
+    private EditText mInputTextField; // EditText Field from Layout
+    private String mSavedUsername, mInputtedText; // Strings to save EditText Field inputs
+    private Button mReturnButton, mContinueButton; // Buttons from Layout
+    private TextView mInstructionTextView; // TextView from Layout
     //private UserDAO mUserDAO;
-    private User mDeletedUser;
+    //private User mDeletedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delete_user);
-        //getDatabase();
-        wireUpDisplay();
+        setContentView(R.layout.activity_delete_user); // Sets context view to activity_delete_user.xml
+        //getDatabase(); Commented Out | gets User database
+        wireUpDisplay(); // Calls wireUpDisplay method
 
+        // Acts Like AddUserActivity
         mReturnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Creates Alert Dialogue
                 AlertDialog.Builder mReturnToMainAlert = new AlertDialog.Builder(DeleteUserActivity.this);
                 mReturnToMainAlert.setTitle("Return to Main Page");
                 mReturnToMainAlert.setMessage("Would you like to cancel deleting an account, " +
@@ -42,7 +44,7 @@ public class DeleteUserActivity extends MainActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = LandingPage.intentFactory(getApplicationContext());
-                        startActivity(intent);
+                        startActivity(intent); // Returns to Landing Page
                         Toast.makeText(DeleteUserActivity.this,
                                 "Returning to the main page...", Toast.LENGTH_SHORT).show();
                     }
@@ -51,6 +53,7 @@ public class DeleteUserActivity extends MainActivity {
                 mReturnToMainAlert.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        // Makes Toast message, nothing happens to the display
                         Toast.makeText(DeleteUserActivity.this,
                                 "Continuing to delete account...", Toast.LENGTH_SHORT).show();
                     }
@@ -63,24 +66,27 @@ public class DeleteUserActivity extends MainActivity {
         mContinueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getValuesFromDisplay();
+                getValuesFromDisplay(); // Stores the Value from the EditText Field
+                // If the User does NOT exist
                 if (!DeleteUserActivity.super.checkForUserInList(mInputtedText)) {
                     Toast.makeText(DeleteUserActivity.this, "No user: " + mInputtedText
                                     + " found", Toast.LENGTH_SHORT).show();
                 }
 
+                // If the String Value is Empty / Nothing was inputted into the EditText Field
                 else if (mInputtedText.isEmpty()) {
                     mInputTextField.setError("The field is empty");
                 }
 
                 else {
+                    // Creates Alert Dialogue
                     AlertDialog.Builder mContinueAlert = new AlertDialog.Builder(DeleteUserActivity.this);
                     mContinueAlert.setTitle("Continue onto deleting the account?");
                     mContinueAlert.setMessage("Would you like to continue onto deleting the account?");
                     mContinueAlert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            mSavedUsername = mInputtedText;
+                            mSavedUsername = mInputtedText; // Saves the Username
                             //mDeletedUser = mUserDAO.getUserByUsername(mSavedUsername);
                             mInstructionTextView.setText("Please Enter the Password of the Account");
                             mContinueButton.setText("Delete!");
@@ -88,11 +94,13 @@ public class DeleteUserActivity extends MainActivity {
                             mContinueButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    getValuesFromDisplay();
+                                    getValuesFromDisplay(); // Gets the String value from the EditText field
+                                    // If the Password didn't Match the User's password
                                     if (!DeleteUserActivity.super.validatePassword(mSavedUsername, mInputtedText)) {
                                         mInstructionTextView.setError("Invalid password. Please try again");
                                     }
 
+                                    // If the String Value is Empty / Nothing was inputted into the EditText Field
                                     else if (mInputtedText.isEmpty()) {
                                         mInputTextField.setError("The field is empty");
                                     }
@@ -103,7 +111,7 @@ public class DeleteUserActivity extends MainActivity {
                                         //mUserDAO.delete(mDeletedUser);
                                         DeleteUserActivity.super.deleteUserFromList(mInputtedText);
                                         Intent intent = LandingPage.intentFactory(getApplicationContext());
-                                        startActivity(intent);
+                                        startActivity(intent); // Returns to LandingPage
                                     }
                                 }
                             });
@@ -114,7 +122,7 @@ public class DeleteUserActivity extends MainActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent intent = LandingPage.intentFactory(getApplicationContext());
-                            startActivity(intent);
+                            startActivity(intent); // Returns to LandingPage
                             Toast.makeText(DeleteUserActivity.this,
                                     "Returning to the main page...", Toast.LENGTH_SHORT).show();
                         }

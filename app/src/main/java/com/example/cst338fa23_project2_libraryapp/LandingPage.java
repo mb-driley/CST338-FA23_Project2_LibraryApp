@@ -21,21 +21,24 @@ import com.example.cst338fa23_project2_libraryapp.DB.User;
 import com.example.myapplication.R;
 
 public class LandingPage extends AppCompatActivity {
+    // Buttons from landing_page.xml
     private Button mAddUserButton, mDeleteUserButton, mCheckUserRentingBookButton, mViewBooksButton, mLogOutButton;
-    public static User mPassedInUser;
-    private TextView mAdminOnlyText, mWelcomeTextView;
-    private Switch mModeSwitch;
-    private boolean mNightMode;
-    SharedPreferences mSharedPreferences;
-    SharedPreferences.Editor mEditor;
-    //private static UserDAO mUserDAO;
+    public static User mPassedInUser; // Static User from Logging In | MainActivity
+    private TextView mAdminOnlyText, mWelcomeTextView; // TextViews from landing_page.xml
+    private Switch mModeSwitch; // Switch from landing_page.xml
+    private boolean mNightMode; // Boolean Value for Night Mode
+    SharedPreferences mSharedPreferences; // Shared Preferences for Night Mode
+    SharedPreferences.Editor mEditor; // Editor to edit preferences settings for night mode
+    //private static UserDAO mUserDAO; Commented Out | UserDAO obj
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.landing_page);
-        //getDatabase();
-        wireUpDisplay();
+        setContentView(R.layout.landing_page); // Sets the Content View to landing_page.xml
+        //getDatabase(); Commented Out | Gets Database
+        wireUpDisplay(); // Calls the wireUpDisplay method
+
+        // Night Mode Settings for the Switch
         mSharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE);
         mNightMode = mSharedPreferences.getBoolean("night", false);
         mWelcomeTextView.setText("Welcome " + mPassedInUser.getUsername());
@@ -44,25 +47,27 @@ public class LandingPage extends AppCompatActivity {
             mModeSwitch.setChecked(true);
         }
 
+        // If the User is an Admin
         if (mPassedInUser.isAdmin()) {
-            mViewBooksButton.setVisibility(View.INVISIBLE);
-            mAddUserButton.setVisibility(View.VISIBLE);
-            mDeleteUserButton.setVisibility(View.VISIBLE);
-            mCheckUserRentingBookButton.setVisibility(View.VISIBLE);
-            mAdminOnlyText.setVisibility(View.VISIBLE);
+            mViewBooksButton.setVisibility(View.INVISIBLE); // Makes Button Invisible to Admins
+            mAddUserButton.setVisibility(View.VISIBLE); // Makes Button Visible to Admins
+            mDeleteUserButton.setVisibility(View.VISIBLE); // Makes Button Visible to Admins
+            mCheckUserRentingBookButton.setVisibility(View.VISIBLE); // Makes Button Visible to Admins
+            mAdminOnlyText.setVisibility(View.VISIBLE); // Makes Button Visible to Admins
         }
 
         else if (!mPassedInUser.isAdmin()) {
-            mAddUserButton.setVisibility(View.INVISIBLE);
-            mDeleteUserButton.setVisibility(View.INVISIBLE);
-            mCheckUserRentingBookButton.setVisibility(View.INVISIBLE);
-            mAdminOnlyText.setVisibility(View.INVISIBLE);
+            mAddUserButton.setVisibility(View.INVISIBLE); // Makes Button Invisible to Normal Users
+            mDeleteUserButton.setVisibility(View.INVISIBLE); // Makes Button Invisible to Normal Users
+            mCheckUserRentingBookButton.setVisibility(View.INVISIBLE); // Makes Button Invisible to Normal Users
+            mAdminOnlyText.setVisibility(View.INVISIBLE); // Makes Button Invisible to Normal Users
         }
 
         // Sets an On Click Listener for the Log Out Button
         mLogOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Creates Alert Dialogue
                 AlertDialog.Builder mLogOutAlert = new AlertDialog.Builder(LandingPage.this);
                 mLogOutAlert.setTitle("Log Out");
                 mLogOutAlert.setMessage("Would you like to log out of this account?");
@@ -70,7 +75,7 @@ public class LandingPage extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = MainActivity.intentFactory(getApplicationContext());
-                        startActivity(intent);
+                        startActivity(intent); // Returns to MainActivity/Login Page
                         Toast.makeText(LandingPage.this, "Logging out...", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -78,6 +83,7 @@ public class LandingPage extends AppCompatActivity {
                 mLogOutAlert.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        // Makes Toast, Nothing Happens to Display
                         Toast.makeText(LandingPage.this, "Returning to main page...", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -86,6 +92,7 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
+        // Sets onClickListener for the Switch | Switches Between Light & Dark Mode
         mModeSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,7 +117,7 @@ public class LandingPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = AddUserActivity.intentFactory(getApplicationContext());
-                startActivity(intent);
+                startActivity(intent); // Starts AddUserActivity
             }
         });
 
@@ -119,7 +126,7 @@ public class LandingPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = DeleteUserActivity.intentFactory(getApplicationContext());
-                startActivity(intent);
+                startActivity(intent); // Starts DeleteUserActivity
             }
         });
 
