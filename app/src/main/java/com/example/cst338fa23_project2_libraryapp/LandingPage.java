@@ -126,6 +126,7 @@ public class LandingPage extends AppCompatActivity {
         mCheckUserRentingBookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO: Implement the intentFactory Call for the CheckUserRentingBookActivity (not implemented yet)
                 Toast.makeText(LandingPage.this, "Feature not yet implemented", Toast.LENGTH_SHORT).show();
             }
         });
@@ -134,6 +135,7 @@ public class LandingPage extends AppCompatActivity {
         mViewBooksButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO: Implement the intentFactory Call for the ViewBooksActivity (not implemented yet)
                 Toast.makeText(LandingPage.this, "Feature not yet implemented", Toast.LENGTH_SHORT).show();
             }
         });
