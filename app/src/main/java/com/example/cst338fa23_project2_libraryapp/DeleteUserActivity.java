@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.R;
+
 public class DeleteUserActivity extends MainActivity {
     private EditText mInputTextField;
     private String mSavedUsername, mInputtedText;
