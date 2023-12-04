@@ -1,6 +1,6 @@
 package com.example.cst338fa23_project2_libraryapp.DB;
 
-import android.content.Context;
+/*import android.content.Context;
 import android.os.AsyncTask;
 
 import androidx.room.Database;
@@ -12,7 +12,7 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final String DB_NAME = "Users.db";
     private static final String USER_TABLE = "user_table";
     private static volatile AppDatabase instance;
-    public abstract UserDAO UserDAO();
+    //public abstract UserDAO UserDAO();
 
     public static AppDatabase getInstance(Context context) {
         if (instance == null) {
@@ -40,4 +40,4 @@ public abstract class AppDatabase extends RoomDatabase {
             return null;
         }
     }
-}
+}*/

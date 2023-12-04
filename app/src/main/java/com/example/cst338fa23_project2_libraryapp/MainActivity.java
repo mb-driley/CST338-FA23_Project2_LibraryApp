@@ -11,9 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.cst338fa23_project2_libraryapp.DB.AppDatabase;
+//import com.example.cst338fa23_project2_libraryapp.DB.AppDatabase;
 import com.example.cst338fa23_project2_libraryapp.DB.User;
-import com.example.cst338fa23_project2_libraryapp.DB.UserDAO;
+//import com.example.cst338fa23_project2_libraryapp.DB.UserDAO;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mLoginButton;
     private String mUsername, mPassword;
     List<User> mUserList = new ArrayList<>();
-    private UserDAO mUserDAO;
+    //private UserDAO mUserDAO;
     User mUser;
     User mDefaultAdminUser = new User(1, "testuser1", "testuser1", false);
     User mDefaultTestUser = new User(2, "admin2", "admin2", true);
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AppDatabase mAppDatabase = AppDatabase.getInstance(this);
+        /*AppDatabase mAppDatabase = AppDatabase.getInstance(this);
         mUserDAO = mAppDatabase.UserDAO();
 
         new AsyncTask<Void, Void, Void>() {
@@ -50,15 +50,15 @@ public class MainActivity extends AppCompatActivity {
                 getDatabase();
                 wireUpDisplayDAO();
             }
-        }.execute();
+        }.execute();*/
 
 
-        /*mUserList.add(mDefaultTestUser);
+        mUserList.add(mDefaultTestUser);
         mUserList.add(mDefaultAdminUser);
-        wireUpDisplay();*/
+        wireUpDisplay();
     }
 
-    private void wireUpDisplay() {
+    /*private void wireUpDisplayDAO() {
         mUsernameField = findViewById(R.id.editTextLoginUserName);
         mPasswordField = findViewById(R.id.editTextLoginPassword);
         mLoginButton = findViewById(R.id.buttonLogin);
@@ -71,12 +71,25 @@ public class MainActivity extends AppCompatActivity {
                     if (!validatePassword()) {
                         mPasswordField.setError("Invalid Password. Please Try Again");
                     }
-                }
+
+                    else {
+                        if (mUser.isAdmin()) {
+                            Intent intent = LandingPage.intentFactory(getApplicationContext(),
+                                mUser.getUserId());
+                            startActivity(intent);
+                        }
+
+                        else {
+                            Intent intent = LandingPage.intentFactory(getApplicationContext(),
+                                mUser.getUserId());
+                            startActivity(intent);
+                        }
+                    }
             }
         });
-    }
+    }*/
 
-    private void wireUpDisplayDAO() {
+    private void wireUpDisplay() {
         mUsernameField = findViewById(R.id.editTextLoginUserName);
         mPasswordField = findViewById(R.id.editTextLoginPassword);
         mLoginButton = findViewById(R.id.buttonLogin);
@@ -100,13 +113,13 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     if (mUser.isAdmin()) {
                         Intent intent = LandingPage.intentFactory(getApplicationContext(),
-                                mUser.getUserId());
+                                mUser);
                         startActivity(intent);
                     }
 
                     else {
                         Intent intent = LandingPage.intentFactory(getApplicationContext(),
-                                mUser.getUserId());
+                                mUser);
                         startActivity(intent);
                     }
                 }
@@ -152,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         return mAlreadyUsed;
     }
 
-    private boolean checkForUserInDatabase() {
+    /*private boolean checkForUserInDatabase() {
         mUser = mUserDAO.getUserByUsername(mUsername);
         if (mUser == null) {
             mUsernameField.setError("No user: " + mUsername + " found");
@@ -160,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return true;
-    }
+    }*/
 
     public int getUserListSize() {return mUserList.size();}
 
@@ -191,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void getDatabase() {
+    /*private void getDatabase() {
         mUserDAO = AppDatabase.getInstance(this).UserDAO();
-    }
+    }*/
 }

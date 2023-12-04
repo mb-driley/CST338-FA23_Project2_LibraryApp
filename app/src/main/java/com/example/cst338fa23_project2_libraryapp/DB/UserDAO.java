@@ -8,7 +8,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
-@Dao
+/*@Dao
 public interface UserDAO {
     @Insert
     void insert(User user);
@@ -27,4 +27,4 @@ public interface UserDAO {
 
     @Query("SELECT * FROM " + "User_Table" + " WHERE mUsername = :username")
     User getUserByUsername(String username);
-}
+}*/

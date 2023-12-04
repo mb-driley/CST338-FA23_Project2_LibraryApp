@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "ee6b38a43cb837cff6bcc2533e6c5f78",
+    "identityHash": "f72222a5ae2c0b38697044c9c65dc688",
     "entities": [
       {
-        "tableName": "user_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mUserId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUsername` TEXT, `mPassword` TEXT, `mCurrentlyRenting` INTEGER NOT NULL, `mAdmin` INTEGER NOT NULL)",
+        "tableName": "User",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mUserId` INTEGER NOT NULL, `mUsername` TEXT, `mPassword` TEXT, `mCurrentlyRenting` INTEGER NOT NULL, `mAdmin` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "mUserId",
@@ -40,10 +40,8 @@
           }
         ],
         "primaryKey": {
-          "autoGenerate": true,
-          "columnNames": [
-            "mUserId"
-          ]
+          "autoGenerate": false,
+          "columnNames": []
         },
         "indices": [],
         "foreignKeys": []
@@ -52,7 +50,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ee6b38a43cb837cff6bcc2533e6c5f78')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f72222a5ae2c0b38697044c9c65dc688')"
     ]
   }
 }

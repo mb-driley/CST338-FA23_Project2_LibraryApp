@@ -10,9 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.cst338fa23_project2_libraryapp.DB.AppDatabase;
+//import com.example.cst338fa23_project2_libraryapp.DB.AppDatabase;
 import com.example.cst338fa23_project2_libraryapp.DB.User;
-import com.example.cst338fa23_project2_libraryapp.DB.UserDAO;
+//import com.example.cst338fa23_project2_libraryapp.DB.UserDAO;
 import com.example.myapplication.R;
 
 public class AddUserActivity extends MainActivity {
@@ -21,13 +21,13 @@ public class AddUserActivity extends MainActivity {
     private EditText mUsernameField, mPasswordField;
     private User mUser;
     private String mUsername, mPassword;
-    private UserDAO mUserDAO;
+    //private UserDAO mUserDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
-        getDatabase();
+        //getDatabase();
         wireUpDisplay();
 
         mReturnButton.setOnClickListener(new View.OnClickListener() {
@@ -157,7 +157,7 @@ public class AddUserActivity extends MainActivity {
         mPassword = mPasswordField.getText().toString();
     }
 
-    private void getDatabase() {
+    /*private void getDatabase() {
         mUserDAO = AppDatabase.getInstance(this).UserDAO();
-    }
+    }*/
 }

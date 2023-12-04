@@ -4,10 +4,10 @@ package com.example.cst338fa23_project2_libraryapp.DB;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "user_table")
+//@Entity(tableName = "user_table")
 public class User {
 
-    @PrimaryKey(autoGenerate = true)
+    //@PrimaryKey(autoGenerate = true)
     private int mUserId;
     private String mUsername;
     private String mPassword;
