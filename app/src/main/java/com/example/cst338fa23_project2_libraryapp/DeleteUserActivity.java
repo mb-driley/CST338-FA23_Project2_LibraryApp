@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cst338fa23_project2_libraryapp.DB.AppDatabase;
+import com.example.cst338fa23_project2_libraryapp.DB.User;
+import com.example.cst338fa23_project2_libraryapp.DB.UserDAO;
 import com.example.myapplication.R;
 
 public class DeleteUserActivity extends MainActivity {
@@ -18,11 +21,14 @@ public class DeleteUserActivity extends MainActivity {
     private String mSavedUsername, mInputtedText;
     private Button mReturnButton, mContinueButton;
     private TextView mInstructionTextView;
+    private UserDAO mUserDAO;
+    private User mDeletedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_user);
+        getDatabase();
         wireUpDisplay();
 
         mReturnButton.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +81,7 @@ public class DeleteUserActivity extends MainActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             mSavedUsername = mInputtedText;
+                            mDeletedUser = mUserDAO.getUserByUsername(mSavedUsername);
                             mInstructionTextView.setText("Please Enter the Password of the Account");
                             mContinueButton.setText("Delete!");
 
@@ -93,6 +100,7 @@ public class DeleteUserActivity extends MainActivity {
                                     else {
                                         Toast.makeText(DeleteUserActivity.this, "User: "
                                                 + mSavedUsername + " has been deleted", Toast.LENGTH_SHORT).show();
+                                        mUserDAO.delete(mDeletedUser);
                                         DeleteUserActivity.super.deleteUserFromList(mInputtedText);
                                         Intent intent = LandingPage.intentFactory(getApplicationContext());
                                         startActivity(intent);
@@ -132,5 +140,9 @@ public class DeleteUserActivity extends MainActivity {
     public static Intent intentFactory(Context packageContext) {
         Intent intent = new Intent(packageContext, DeleteUserActivity.class);
         return intent;
+    }
+
+    private void getDatabase() {
+        mUserDAO = AppDatabase.getInstance(this).UserDAO();
     }
 }

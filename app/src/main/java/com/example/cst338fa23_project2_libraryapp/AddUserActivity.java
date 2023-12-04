@@ -27,6 +27,7 @@ public class AddUserActivity extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
+        getDatabase();
         wireUpDisplay();
 
         mReturnButton.setOnClickListener(new View.OnClickListener() {
