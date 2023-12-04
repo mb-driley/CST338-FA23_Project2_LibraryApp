@@ -15,7 +15,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.example.cst338fa23_project2_libraryapp.DB.AppDatabase;
 import com.example.cst338fa23_project2_libraryapp.DB.User;
+import com.example.cst338fa23_project2_libraryapp.DB.UserDAO;
 import com.example.myapplication.R;
 
 public class LandingPage extends AppCompatActivity {
@@ -26,6 +28,8 @@ public class LandingPage extends AppCompatActivity {
     private boolean mNightMode;
     SharedPreferences mSharedPreferences;
     SharedPreferences.Editor mEditor;
+    private static UserDAO mUserDAO;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,6 +150,12 @@ public class LandingPage extends AppCompatActivity {
         return intent;
     }
 
+    public static Intent intentFactory(Context packageContext, int passedInUserID) {
+        Intent intent = new Intent(packageContext, LandingPage.class);
+        mPassedInUser = mUserDAO.getUserByID(passedInUserID);
+        return intent;
+    }
+
     private void wireUpDisplay() {
         mAddUserButton = findViewById(R.id.buttonAddUser);
         mDeleteUserButton = findViewById(R.id.buttonDeleteUser);
@@ -155,6 +165,10 @@ public class LandingPage extends AppCompatActivity {
         mAdminOnlyText = findViewById(R.id.landingPageAdminOnlyTextView);
         mWelcomeTextView = findViewById(R.id.landingPageWelcomeTextView);
         mModeSwitch = findViewById(R.id.landingPageModeSwitch);
+    }
+
+    private void getDatabase() {
+        mUserDAO = AppDatabase.getInstance(this).UserDAO();
     }
 
 }

@@ -90,17 +90,23 @@ public class MainActivity extends AppCompatActivity {
                     if (validatePassword()) {
                         Intent intent = LandingPage.intentFactory(getApplicationContext(), mUser);
                         startActivity(intent);
-                    } else {
+                    }
+
+                    else {
                         mPasswordField.setError("Invalid Password. Please Try Again");
                     }
-                } else {
+                }
+
+                else {
                     if (mUser.isAdmin()) {
-                        Intent intent = MainActivity.intentFactory(getApplicationContext(),
-                                mUser.getUserID());
+                        Intent intent = LandingPage.intentFactory(getApplicationContext(),
+                                mUser.getUserId());
                         startActivity(intent);
-                    } else {
-                        Intent intent = MainActivity.intentFactory(getApplicationContext(),
-                                mUser.getUserID());
+                    }
+
+                    else {
+                        Intent intent = LandingPage.intentFactory(getApplicationContext(),
+                                mUser.getUserId());
                         startActivity(intent);
                     }
                 }
